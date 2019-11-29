@@ -1,18 +1,21 @@
 <template>
-    <div class="login">
-        <h3 class="title">登录</h3>
-        <hr>
-        <el-form ref="form" class="myform" :model="form" label-width="80px">
-            <el-form-item label="账号">
-                <el-input v-model="form.username"></el-input>
-            </el-form-item>
-            <el-form-item label="密码">
-                <el-input type="password" v-model="form.password"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="onSubmit">登录</el-button>
-            </el-form-item>
-        </el-form>
+    <div id="main"
+         :style="{backgroundImage:'url('+imageurl+')'}">
+        <div class="login">
+            <h3 class="title">CMDB</h3>
+            <hr>
+            <el-form ref="form" class="myform" :model="form" label-width="80px">
+                <el-form-item label="账号">
+                    <el-input v-model="form.username"></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input type="password" v-model="form.password"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
 </template>
 <script>
@@ -23,7 +26,9 @@
         form: {
           username: '',
           password: ""
-        }
+        },
+        imageurl: require('E:\\ops-web\\src\\assets\\image\\backimage.jpg')
+
       }
     },
     methods: {
@@ -41,7 +46,7 @@
             // 登录成功
             this.$store.commit('clearUser');
             this.$store.commit('clearMenu');
-            this.$store.commit("setMenu",res.data.menu);
+            this.$store.commit("setMenu", res.data.menu);
             this.$store.commit("MenuToRouter", this.$router);
             this.$store.commit("setToken", res.data.token);
             this.$store.commit("setUser", res.data);
@@ -53,19 +58,27 @@
           console.log(err)
         })
       }
-    }
+    },
   }
 </script>
 
 <style lang="scss" scoped>
+    #main {
+        background-size: 100% 100%;
+        height: 100%;
+        position: fixed;
+        width: 100%
+    }
+
     .login {
-        margin: 100px auto;
+        margin: 250px auto;
         width: 400px;
         border-radius: 10px 10px;
         border: 1px solid #cccccc;
+        background: #c0ccda;
 
         .title {
-            font-size: 30px;
+            font-size: 35px;
             font-weight: bold;
             margin: 10px 10px;
         }
