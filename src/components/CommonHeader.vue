@@ -45,7 +45,7 @@
         this.$store.commit("setCollapse")
       },
       logout() {
-        this.$confirm('是否退出登录, 是否继续?', '提示', {
+        this.$confirm('确定要退出系统?', '登出', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'

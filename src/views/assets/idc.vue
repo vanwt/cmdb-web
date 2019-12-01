@@ -134,6 +134,7 @@
             this.tableData = resp.data.data;
             this.config.total = resp.data.count;
           }).catch(err => {
+          this.$message.error('机房信息加载失败');
           console.log(err)
         })
       },

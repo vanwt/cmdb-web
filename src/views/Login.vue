@@ -1,6 +1,6 @@
 <template>
     <div id="main"
-         :style="{backgroundImage:'url('+imageurl+')'}">
+         :style="{backgroundImage:'url('+image_url+')'}">
         <div class="login">
             <h3 class="title">CMDB</h3>
             <hr>
@@ -27,8 +27,7 @@
           username: '',
           password: ""
         },
-        imageurl: require('E:\\ops-web\\src\\assets\\image\\backimage.jpg')
-
+        image_url: require('E:\\ops-web\\src\\assets\\image\\backimage.jpg'),
       }
     },
     methods: {
@@ -55,7 +54,12 @@
             this.$message.warning(res.data.msg)
           }
         }).catch(err => {
-          console.log(err)
+          if (err.status === 400) {
+            this.$alert('<strong>账户或密码错误</strong>', '登录失败', {
+              confirmButtonText: '确定',
+              dangerouslyUseHTMLString: true
+            });
+          }
         })
       }
     },

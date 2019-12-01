@@ -189,6 +189,7 @@
             this.tableData = resp.data.data;
             this.config.total = resp.data.count;
           }).catch(err => {
+          this.$message.error('主机加载失败');
           console.log(err)
         })
       },
@@ -201,6 +202,7 @@
               this.tag_list.push({label: tag.name, value: tag.id});
             });
           }).catch(err => {
+          this.$message.error('标签信息加载失败');
           console.log(err)
         })
       },
@@ -213,6 +215,7 @@
               this.idc_list.push({label: idc.name, value: idc.id});
             });
           }).catch(err => {
+          this.$message.error('机房信息加载失败');
           console.log(err)
         })
       },
@@ -221,9 +224,10 @@
           .then(resp => {
             // 需要将 tag id 转换 text/value tag name 转化 value/label
             resp.data.forEach(user => {
-              this.user_list.push({label: user.realname, value: user.id});
+              this.user_list.push({label: user.username, value: user.id});
             });
           }).catch(err => {
+          this.$message.error('用户信息加载失败');
           console.log(err)
         })
       },
@@ -235,6 +239,7 @@
               this.host_machine_list.push({label: host.ip, value: host.id})
             })
           }).catch(err => {
+          this.$message.error('宿主机信息加载失败');
           console.log(err)
         })
       },

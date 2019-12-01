@@ -36,7 +36,7 @@
                   style="width: 100%"
                   @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="name" label="机房名"></el-table-column>
+            <el-table-column prop="name" label="标签名"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button type="warning" plain size="mini" @click="editTag(scope.row)">Edit</el-button>
@@ -87,16 +87,15 @@
     methods: {
       getTagTableData(event, my_url) {
         if (!my_url) {
-          my_url = 'api/v1/tag'; // ?page=${this.config.page}&limit=${this.config.page_size}
+          my_url = `/api/v1/tag?page=${this.config.page}&limit=${this.config.page_size}`
         }
         this.$http.get(my_url)
           .then(resp => {
             // 需要将 tag id 转换 text/value tag name 转化 value/label
-            console.log(resp.data);
-            this.tableData = resp.data;
+            this.tableData = resp.data.data;
             this.config.total = resp.data.count;
           }).catch(err => {
-          console.log(err)
+          this.$message.error('标签加载失败!');
         })
       },
       addTag() {
